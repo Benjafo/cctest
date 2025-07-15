@@ -28,6 +28,10 @@
 #     CLAUDE_HOOKS_GO_DEADCODE_ENABLED=false  # Disable deadcode analysis (default: true)
 #                                             # Note: deadcode can take 5-10 seconds on large projects
 
+#####TEST#####
+CLAUDE_HOOKS_DEBUG=1
+
+
 # Don't use set -e - we need to control exit codes carefully
 set +e
 
