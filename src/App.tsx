@@ -5,6 +5,12 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  var unusedVariable = "this will cause a lint error"
+  
+  const handleClick = () => {
+    console.log("Button clicked");
+    setCount((count) => count + 1)
+  }
 
   return (
     <>
