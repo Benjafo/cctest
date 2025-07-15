@@ -741,14 +741,28 @@ if [ ! -t 0 ]; then
                 FILE_PATH=$(echo "$TOOL_INPUT" | jq -r '.file_path // empty')
             fi
             
-            # Change to the directory of the edited file
+            # Find project root instead of changing to file directory
             if [[ -n "$FILE_PATH" ]] && [[ -f "$FILE_PATH" ]]; then
-                FILE_DIR=$(dirname "$FILE_PATH")
-                cd "$FILE_DIR" || true
-                log_debug "Changed to file directory: $(pwd)"
-                # Update FILE_PATH to just the basename since we've changed directories
-                FILE_PATH=$(basename "$FILE_PATH")
-                log_debug "FILE_PATH is now: $FILE_PATH"
+                # Keep the original FILE_PATH for reference
+                ORIGINAL_FILE_PATH="$FILE_PATH"
+                
+                # Find project root by looking for package.json, go.mod, etc.
+                PROJECT_ROOT="$(pwd)"
+                CURRENT_DIR="$(dirname "$FILE_PATH")"
+                
+                # Search upward for project root markers
+                while [[ "$CURRENT_DIR" != "/" ]]; do
+                    if [[ -f "$CURRENT_DIR/package.json" ]] || [[ -f "$CURRENT_DIR/go.mod" ]] || [[ -f "$CURRENT_DIR/Cargo.toml" ]] || [[ -f "$CURRENT_DIR/pyproject.toml" ]]; then
+                        PROJECT_ROOT="$CURRENT_DIR"
+                        break
+                    fi
+                    CURRENT_DIR="$(dirname "$CURRENT_DIR")"
+                done
+                
+                # Change to project root
+                cd "$PROJECT_ROOT" || true
+                log_debug "Changed to project root: $(pwd)"
+                log_debug "Original file path: $ORIGINAL_FILE_PATH"
             fi
         else
             # Not an edit operation - exit silently
