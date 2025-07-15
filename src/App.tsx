@@ -11,6 +11,9 @@ function App() {
     console.log("Button clicked");
     setCount((count) => count + 1)
   }
+  
+  let anotherUnusedVar = "this will fail linting"
+  var yetAnotherVar = "double quotes and semicolon"; let missingVar;
 
   return (
     <>
@@ -32,7 +35,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more (with jq installed)
+        Click on the Vite and React logos to learn more (with jq installed and strict linting)
       </p>
     </>
   )
