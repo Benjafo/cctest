@@ -54,7 +54,7 @@ function App() {
   // testing hooks with perms fix
   const anotherTest = "hooks should run now";
 
-  // testing debug mode to see why eslint isn't running
+  // testing updated smart-lint.sh with package.json detection
 
   return (
     <>
