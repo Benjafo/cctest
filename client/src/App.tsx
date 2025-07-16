@@ -11,50 +11,15 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  var badVar = "This is a bad variable";
-  console.log("Debug message"); // violates no-console
-  const unusedVariable = 42; // violates no-unused-vars
-
-  // violates prefer-const
-  let shouldBeConst = "I won't be reassigned";
-
-  // violates eqeqeq
-  if (count == 0) {
+  // Adding new ESLint violations to test the updated hook
+  var badVariable = "this should be const"; // violates no-var
+  console.log("Testing updated linter"); // violates no-console
+  debugger; // violates no-debugger
+  const unused = 42; // violates no-unused-vars
+  
+  if (count == 0) { // violates eqeqeq
     console.log("Count is zero");
   }
-
-  // violates no-nested-ternary and prefer-template
-  const message = count > 10 ? "High" : count > 5 ? "Medium" : "Low" + count;
-
-  // more violations for testing
-  debugger; // violates no-debugger
-  const test = count === 5 ? true : false; // violates no-unneeded-ternary
-
-  // violates prefer-arrow-callback
-  const numbers = [1, 2, 3].map(function (n) {
-    return n * 2;
-  });
-
-  // violates object-shorthand
-  const obj = {
-    count: count,
-    message: message
-  };
-
-  // violates arrow-body-style
-  const doNothing = () => {
-    return;
-  };
-
-  // violates no-throw-literal
-  if (count > 100) {
-    throw "Count too high!";
-  }
-
-  // testing hooks with perms fix
-  const anotherTest = "hooks should run now";
-
-  // testing updated smart-lint.sh with package.json detection
 
   return (
     <>
