@@ -18,6 +18,7 @@ router.get('/api/test', function(req, res, next) {
   });
 });
 
+<<<<<<< HEAD
 /* POST login endpoint */
 router.post('/api/login', function(req, res, next) {
   const { email, password } = req.body;
@@ -35,7 +36,7 @@ router.post('/api/login', function(req, res, next) {
   // Mock successful login response
   res.json({
     success: true,
-    message: 'Login endpoint called successfully',
+    message: 'Login request received successfully',
     user: {
       email: email,
       id: 'mock-user-id'
@@ -44,4 +45,6 @@ router.post('/api/login', function(req, res, next) {
   });
 });
 
+=======
+>>>>>>> 951ef709c769f848c259baca391b43f45eca12c2
 module.exports = router;
