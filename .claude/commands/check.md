@@ -71,7 +71,7 @@ Let me ultrathink about validating this codebase against our exceptional standar
 - Check for any outstanding TODOs or temporary code
 
 **Step 2: Language-Agnostic Linting**
-Run `npm run test` and ensure:
+Run `npm run lint` and ensure:
 - ZERO warnings across ALL linters
 - ZERO disabled linter rules without documented justification
 - ZERO "nolint" or suppression comments without explanation

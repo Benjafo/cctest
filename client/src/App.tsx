@@ -12,6 +12,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   // Adding new ESLint violations to test the updated hook
+  // Another violation test
   var badVariable = "this should be const"; // violates no-var
   console.log("Testing updated linter"); // violates no-console
   debugger; // violates no-debugger
