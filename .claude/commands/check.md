@@ -65,83 +65,47 @@ Let me ultrathink about validating this codebase against our exceptional standar
 
 **Universal Quality Verification Protocol:**
 
-**Step 0: Hook Status Check**
-- Run `~/.claude/hooks/smart-lint.sh` directly to see current state
-- If ANY issues exist, they MUST be fixed before proceeding
-- Check `~/.claude/hooks/violation-status.sh` if it exists
-
 **Step 1: Pre-Check Analysis**
 - Review recent changes to understand scope
 - Identify which tests should be affected
 - Check for any outstanding TODOs or temporary code
 
 **Step 2: Language-Agnostic Linting**
-Run appropriate linters for ALL languages in the project:
-- `make lint` if Makefile exists
-- `~/.claude/hooks/smart-lint.sh` for automatic detection
-- Manual linter runs if needed
-
-**Universal Requirements:**
+Run `npm run test` and ensure:
 - ZERO warnings across ALL linters
 - ZERO disabled linter rules without documented justification
 - ZERO "nolint" or suppression comments without explanation
 - ZERO formatting issues (all code must be auto-formatted)
 
-**For Go projects specifically:**
-- ZERO warnings from golangci-lint (all checks enabled)
-- No disabled linter rules without explicit justification
-- No use of interface{} or any{} types
-- No nolint comments unless absolutely necessary with explanation
-- Proper error wrapping with context
-- No naked returns in functions over 5 lines
-- Consistent naming following Go conventions
-
 **Step 3: Test Verification**
-Run `make test` and ensure:
+Run `npm run test` and ensure:
 - ALL tests pass without flakiness
 - Test coverage is meaningful (not just high numbers)
-- Table-driven tests for complex logic
 - No skipped tests without justification
-- Benchmarks exist for performance-critical paths
 - Tests actually test behavior, not implementation details
 
-**Go Quality Checklist:**
-- [ ] No interface{} or any{} - concrete types everywhere
+**Code Quality Checklist:**
+- [ ] No any - concrete types everywhere
 - [ ] Simple error handling - no custom error hierarchies
-- [ ] Early returns to reduce nesting
 - [ ] Meaningful variable names (userID not id)
-- [ ] Proper context propagation
-- [ ] No goroutine leaks
-- [ ] Deferred cleanup where appropriate
-- [ ] No race conditions (run with -race flag)
-- [ ] No time.Sleep() for synchronization - channels used instead
-- [ ] Select with timeouts instead of polling loops
 
 **Code Hygiene Verification:**
-- [ ] All exported symbols have godoc comments
 - [ ] No commented-out code blocks
 - [ ] No debugging print statements
 - [ ] No placeholder implementations
-- [ ] Consistent formatting (gofmt/goimports)
 - [ ] Dependencies are actually used
 - [ ] No circular dependencies
 
 **Security Audit:**
 - [ ] Input validation on all external data
 - [ ] SQL queries use prepared statements
-- [ ] Crypto operations use crypto/rand
 - [ ] No hardcoded secrets or credentials
 - [ ] Proper permission checks
 - [ ] Rate limiting where appropriate
 
 **Performance Verification:**
 - [ ] No obvious N+1 queries
-- [ ] Appropriate use of pointers vs values
-- [ ] Buffered channels where beneficial
 - [ ] Connection pooling configured
-- [ ] No unnecessary allocations in hot paths
-- [ ] No busy-wait loops consuming CPU
-- [ ] Channels used for efficient goroutine coordination
 
 **Failure Response Protocol:**
 When issues are found:
@@ -166,9 +130,8 @@ When issues are found:
 
 **Final Verification:**
 The code is ready when:
-✓ make lint: PASSES with zero warnings
-✓ make test: PASSES all tests
-✓ go test -race: NO race conditions
+✓ lint: PASSES with zero warnings
+✓ test: PASSES all tests
 ✓ All checklist items verified
 ✓ Feature works end-to-end in realistic scenarios
 ✓ Error paths tested and handle gracefully
