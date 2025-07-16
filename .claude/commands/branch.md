@@ -37,9 +37,5 @@ git pull origin $CURRENT_BRANCH
 echo "🌿 Creating new branch: $BRANCH_NAME"
 git checkout -b $BRANCH_NAME
 
-# Push to origin with tracking
-echo "📤 Pushing branch to origin..."
-git push -u origin $BRANCH_NAME
-
 echo "✅ Successfully created and switched to branch: $BRANCH_NAME"
 echo "💡 You can now work on this feature branch. Changes will be auto-committed."
